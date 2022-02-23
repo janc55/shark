@@ -1,0 +1,51 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="br-mainpanel">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">{{ __('Nuevo estudiante') }}</div>
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    @if (session('mensaje'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session('mensaje') }}
+                        </div>
+                    @endif
+                </div>
+                <div class="card-body">
+                <form action="{{route('estudiante.store')}}" method="post" enctype='multipart/form-data'>
+                    @csrf
+                    <label for="" class="form-label">Nombre: </label>
+                        <input type="text" class="form-control" name="nombre" required>
+                        <br>
+                        <label for="" class="form-label">Apellidos: </label>
+                        <input type="text" class="form-control" name="apellidos" required>
+                        <br>
+                        <label for="" class="form-label">Correo electrónico: </label>
+                        <input type="email" class="form-control" name="correo" required>
+                        <br>
+                        <label for="" class="form-label">Celular: </label>
+                        <input type="number" class="form-control" name="celular" required>
+                        <br>
+                        <select class="form-control" aria-label=".form-select-sm example" name="sexo" required>
+                            <option selected disabled value="">Sexo</option>
+                            <option>Masculino</option>
+                            <option>Femenino</option>
+                        </select>
+                        <br>
+                        <input type="submit" value="Guardar" class="btn btn-primary">
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+

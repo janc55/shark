@@ -21,9 +21,9 @@ class CredencialEstudianteController extends Controller
     {
         if($request->buscar){
             $lista_credenciales = CredencialEstudiante::orwhere("nombres", "like", "%".$request->buscar."%")
-                                            ->orwhere("apellidos", "like", "%".$request->buscar."%")
+                                            ->orwhere("apellido_paterno", "like", "%".$request->buscar."%")
                                             ->paginate(10);
-            return view("admin.credenciales.listar", compact("lista_credenciales"));
+            return view("admin.credencialestudiante.listar", compact("lista_credenciales"));
         }
         $lista_credenciales = CredencialEstudiante::paginate(10);
         return view("admin.credencialestudiante.listar", compact("lista_credenciales"));
@@ -72,7 +72,8 @@ class CredencialEstudianteController extends Controller
         $credencial->correo = $request->correo;
         $credencial->celular = $request->celular;
         $credencial->imagen = $nom_imagen;
-        
+        $credencial->vigencia = $request->vigencia;
+        $credencial->modelo = $request->modelo;
         $nom_enlace = $request->url() . "/" . $request->cedula_identidad . "/vista";
         $nom_qr = $request->cedula_identidad;
         
@@ -131,6 +132,8 @@ class CredencialEstudianteController extends Controller
         $credencial->tipo_sangre = $request->tipo_sangre;
         $credencial->correo = $request->correo;
         $credencial->celular = $request->celular;
+        $credencial->vigencia = $request->vigencia;
+        $credencial->modelo = $request->modelo;
         //archivo
         $nom_imagen = "";
         
@@ -188,7 +191,33 @@ class CredencialEstudianteController extends Controller
         $pdf->SetAutoPageBreak(false, 0);
 
         // set bacground image
-        $pdf->Image('logo/fondo13.png', 0, 0, 86, 54, '', '', '', false, 300, '', false, false, 0);
+        $modelo = $credencial->modelo;
+
+        switch ($modelo) {
+            case 1:
+                $ruta_modelo = 'logo/fondo1.png';
+                break;
+            case 2:
+                $ruta_modelo = 'logo/fondo2.png';
+                break;
+            case 3:
+                $ruta_modelo = 'logo/fondo3.png';
+                break;
+            case 4:
+                $ruta_modelo = 'logo/fondo4.png';
+                break;
+            case 5:
+                $ruta_modelo = 'logo/fondo5.png';
+                break;
+            case 6:
+                $ruta_modelo = 'logo/fondo6.png';
+                break;
+            case 7:
+                $ruta_modelo = 'logo/fondo7.png';
+                break;
+        };
+       
+        $pdf->Image($ruta_modelo, 0, 0, 86, 54, '', '', '', false, 300, '', false, false, 0);
         
         //Setear foto est
         $pdf->SetXY(60, 15);
@@ -196,7 +225,7 @@ class CredencialEstudianteController extends Controller
         
         //Setear logo UNIOR
         $pdf->SetXY(0, 0);
-        $pdf->Image('logo/logo_unior_blanco.png', '', '', '', 13, '', '', 'T', false, 300, 'R', false, false, 1, false, false, false);
+        $pdf->Image('logo/logo_unior_blanco.png', '58', '1', '', 12, '', '', 'T', false, 300, '', false, false, 1, false, false, false);
                
         //set titulo
         $pdf->SetXY(0, 10);
@@ -204,7 +233,7 @@ class CredencialEstudianteController extends Controller
         $html = '<p style="color:white;text-align:left;">Credencial Estudiantil</p>'; 
         $pdf->setCellPaddings(5, 0, 2, 0);
         $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 0, 0, true, 'L', true);
-
+ 
         //set cod est
         $pdf->SetXY(0, 28);
         $pdf->SetFont('robotocondensedb', '', 16, '', false);
@@ -219,24 +248,17 @@ class CredencialEstudianteController extends Controller
         $pdf->SetFont('robotocondensedb', '', 15, '', false);
         $html = '<p style="color:white;text-align:left;">' .$credencial->nombres. " " .$credencial->apellido_paterno. " " .$credencial->apellido_materno.  '</p>'; 
         $pdf->setCellPaddings(5, 0, 2, 0);
-        $pdf->writeHTMLCell(95, 0, '', '', $html, 0, 0, 0, true, 'J', true,);
-     
+        $pdf->writeHTMLCell(95, 0, '', '', $html, 0, 0, 0, true, 'J', true);
 
-        //set fecha venc
+        //set carrera
         $pdf->SetXY(0, 42);
-        $stretching = 100;
+        $stretching = 80;
         $pdf->setFontStretching($stretching);
-        $pdf->SetFont('nunito', '', 8, '', false);
-        $html = '<p style="color:white;text-align:left;">Valida <br/> hasta:</p>'; 
+        $pdf->SetFont('nunito', 'B', 13, '', false);
+        $html = '<p style="color:white;text-align:left;">' .$credencial->carrera. '</p>'; 
         $pdf->setCellPaddings(5, 0, 2, 0);
-        $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 0, 0, true, 'L', true);
-
-        $pdf->SetXY(0, 43);
-        $pdf->SetFont('roboto', '', 10, '', false);
-        $html = '<p style="color:white;text-align:left;">02/2023</p>'; 
-        $pdf->setCellPaddings(16, 0, 2, 0);
-        $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 0, 0, true, 'L', true);
-
+        $pdf->writeHTMLCell(95, 0, '', '', $html, 0, 0, 0, true, 'J', true);
+     
         // restore auto-page-break status
         $pdf->SetAutoPageBreak($auto_page_break, $bMargin);
         // set the starting point for the page content
@@ -276,8 +298,11 @@ class CredencialEstudianteController extends Controller
          $html = '<font size="9" color="#f10003">Tipo de sangre: </font><font size="9" color="#000">'. $credencial->tipo_sangre.'</font>';
          $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 0, 0, true, 'L', true);
          $pdf->SetXY(0, 31);
-         $html = '<font size="9" color="#f10003">Correo electrónico: </font><br/><font size="8" color="#000">'.$credencial->correo.'</font>';
+         $fecha_actual = date('d-m-Y');
+         $vigencia = date("m-Y",strtotime($fecha_actual."+ ".$credencial->vigencia." year"));
+         $html = '<font size="9" color="#f10003">Valida hasta: </font><font size="9" color="#000">'.$vigencia.'</font>';
          $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 0, 0, true, 'L', true);
+
 
         //Imagen QR
         $pdf->SetXY(60,17);

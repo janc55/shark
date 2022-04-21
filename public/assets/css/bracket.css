@@ -1583,7 +1583,7 @@ pre code {
 .form-control:focus, .dataTables_filter input:focus {
   color: #495057;
   background-color: #fff;
-  border-color: #55a6f8;
+  border-color: #C62828;
   outline: none;
 }
 .form-control::placeholder, .dataTables_filter input::placeholder {
@@ -1994,13 +1994,13 @@ fieldset[disabled] a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #0866C6;
-  border-color: #0866C6;
+  background-color: #C62828;
+  border-color: #C62828;
 }
 .btn-primary:hover {
   color: #fff;
-  background-color: #0753a1;
-  border-color: #064d95;
+  background-color: #B71C1C;
+  border-color: #B71C1C;
 }
 .btn-primary:focus, .btn-primary.focus {
   box-shadow: 0 0 0 3px rgba(8, 102, 198, 0.5);
@@ -2370,7 +2370,7 @@ fieldset[disabled] a.btn {
 
 .btn-link {
   font-weight: normal;
-  color: #0866C6;
+  color: #C62828;
   border-radius: 0;
 }
 .btn-link, .btn-link:active, .btn-link.active, .btn-link:disabled {
@@ -2384,7 +2384,7 @@ fieldset[disabled] a.btn {
   border-color: transparent;
 }
 .btn-link:focus, .btn-link:hover {
-  color: #05407c;
+  color: #B71C1C;
   text-decoration: none;
   background-color: transparent;
 }
@@ -10387,7 +10387,7 @@ textarea.parsley-error:active {
 
 .table-danger > thead > tr > th,
 .table-danger > thead > tr > td {
-  background-color: #DC3545;
+  background-color: #C62828;
 }
 .table-danger > tbody > tr > th,
 .table-danger > tbody > tr > td {
@@ -13352,7 +13352,7 @@ textarea.parsley-success:focus {
   bottom: 0;
   z-index: 100;
   width: 230px;
-  background-color: #1D2939;
+  background-color: #424242;
   padding-left: 10px;
   padding-right: 10px;
   transition: all 0.2s ease-in-out;
@@ -13442,13 +13442,13 @@ textarea.parsley-success:focus {
 }
 .br-menu-link:hover, .br-menu-link:focus {
   color: #fff;
-  background-color: #18222f;
+  background-color: #B71C1C; 
 }
 .br-menu-link:focus, .br-menu-link:active {
   outline: none;
 }
 .br-menu-link.show-sub {
-  background-color: #141d28;
+  background-color: #B71C1C;
   color: #fff;
 }
 .br-menu-link.active {
@@ -13486,7 +13486,7 @@ textarea.parsley-success:focus {
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 27px;
-  background-color: #1a2432;
+  background-color: #616161;
   display: none;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
@@ -13513,16 +13513,16 @@ textarea.parsley-success:focus {
   transition: all 0.2s ease-in-out;
 }
 .br-menu-sub .nav-link:hover, .br-menu-sub .nav-link:focus {
-  color: #17A2B8;
+  color: #D32F2F;
 }
 .br-menu-sub .nav-link:hover::before, .br-menu-sub .nav-link:focus::before {
   width: 20px;
   left: -15px;
   opacity: 1;
-  background-color: #17A2B8;
+  background-color: #D32F2F;
 }
 .br-menu-sub .nav-link.active {
-  color: #17a2b8;
+  color: #D32F2F;
 }
 .br-menu-sub .nav-link.active::before {
   width: 20px;
@@ -14875,7 +14875,7 @@ textarea.parsley-success:focus {
 }
 
 .bg-br-primary {
-  background-color: #1D2939;
+  background-color: #424242;
 }
 
 .bg-lightsky {
@@ -58737,3 +58737,17 @@ a.hover-white-8:hover, a.hover-white-8:focus {
 .mx-wd-1350 {
   max-width: 1350px;
 }
+
+.simple_bg {
+  background-image: url(../img/fondo4.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+ }
+
+ .inicio_bg {
+  background-image: url(../img/fondo_welcome.png);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+ }

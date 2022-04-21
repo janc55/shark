@@ -116,6 +116,34 @@
                         </div>
                     </div><!-- col-4 -->
                     <div class="col-lg-4">
+                        <div class="form-group mg-b-10-force">
+                            <label class="form-control-label">Vigencia: </label>
+                            <select class="form-control" aria-label=".form-select-sm example" name="vigencia" required>
+                                <option selected disabled value="">Seleccione los años</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                    </div><!-- col-4 -->
+                    <div class="col-lg-4">
+                        <div class="form-group mg-b-10-force">
+                            <label class="form-control-label">Modelo: </label>
+                            <select class="form-control" aria-label=".form-select-sm example" name="modelo" required>
+                                <option selected disabled value="">Seleccione el modelo de la credencial</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                            </select>
+                        </div>
+                    </div><!-- col-4 -->
+                    <div class="col-lg-4">
                         <div class="form-group">
                             <label for="" class="form-label">Imagen: </label>
                             <input type="file" class="form-control-file" name="imagen">

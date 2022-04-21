@@ -26,7 +26,14 @@
         <div class="card-body">
             <a href="{{route('credencialestudiante.create')}}" class="btn btn-primary">Nuevo Credencial</a>
             <form action="{{route('credencialestudiante.index')}}" method="get" >
-                <input type="search" name="buscar" class="form-control mt-3" placeholder="Buscar...">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <input type="search" name="buscar" class="form-control mt-3" placeholder="Buscar...">
+                    </div><!-- col-4 -->
+                    <div class="col-lg-4">
+                        <a href="{{route('credencialestudiante.index')}}" class="btn btn-primary mt-3">Limpiar</a>
+                    </div><!-- col-4 -->
+                </div><!-- row -->
             </form>
         </div>
     </div>
@@ -34,6 +41,7 @@
         <table class="table table-bordered table-colored table-danger">
             <thead>
                 <tr>
+                    <th scope="col">COD</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellidos</th>
                     <th scope="col">CI</th>
@@ -43,8 +51,9 @@
             <tbody>
                 @foreach ($lista_credenciales as $credenciales )
                 <tr>
+                    <td scope="row">{{$credenciales->cod_est}}</td>
                     <td scope="row">{{$credenciales->nombres}}</td>
-                    <td>{{$credenciales->apellido_paterno}}{{$credenciales->apellido_materno}}</td>
+                    <td>{{$credenciales->apellido_paterno}} {{$credenciales->apellido_materno}}</td>
                     <td>{{$credenciales->cedula_identidad}}</td>
                     <td>
                         <a href="/credencialestudiante/{{ $credenciales->id }}/edit" class="btn btn-warning btn-sm" >Editar</a>

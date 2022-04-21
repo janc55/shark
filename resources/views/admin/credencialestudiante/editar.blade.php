@@ -115,6 +115,32 @@
                         </div>
                     </div><!-- col-4 -->
                     <div class="col-lg-4">
+                        <div class="form-group mg-b-10-force">
+                            <label class="form-control-label">Vigencia: </label>
+                            <select class="form-control" aria-label=".form-select-sm example" name="vigencia" required>
+                                <option {{($credencial->vigencia == '1')?'selected':''}}>1</option>
+                                <option {{($credencial->vigencia == '2')?'selected':''}}>2</option>
+                                <option {{($credencial->vigencia == '3')?'selected':''}}>3</option>
+                                <option {{($credencial->vigencia == '4')?'selected':''}}>4</option>
+                                <option {{($credencial->vigencia == '5')?'selected':''}}>5</option>
+                            </select>
+                        </div>
+                    </div><!-- col-4 -->
+                    <div class="col-lg-4">
+                        <div class="form-group mg-b-10-force">
+                            <label class="form-control-label">Modelo: </label>
+                            <select class="form-control" aria-label=".form-select-sm example" name="modelo" required>
+                                <option {{($credencial->modelo == '1')?'selected':''}}>1</option>
+                                <option {{($credencial->modelo == '2')?'selected':''}}>2</option>
+                                <option {{($credencial->modelo == '3')?'selected':''}}>3</option>
+                                <option {{($credencial->modelo == '4')?'selected':''}}>4</option>
+                                <option {{($credencial->modelo == '5')?'selected':''}}>5</option>
+                                <option {{($credencial->modelo == '6')?'selected':''}}>6</option>
+                                <option {{($credencial->modelo == '7')?'selected':''}}>7</option>
+                            </select>
+                        </div>
+                    </div><!-- col-4 -->
+                    <div class="col-lg-4">
                         <div class="form-group">
                             <label for="" class="form-label">Imagen: </label>
                             <input type="file" class="form-control-file" name="imagen">
